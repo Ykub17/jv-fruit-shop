@@ -8,7 +8,7 @@ public class ReportGeneratorImpl implements ReportGenerator {
     private static final String REPORT_HEADER = "fruit,quantity";
 
     @Override
-    public String gerReport() {
+    public String getReport() {
         StringBuilder reportBuilder = new StringBuilder();
         reportBuilder.append(REPORT_HEADER);
 
@@ -18,6 +18,7 @@ public class ReportGeneratorImpl implements ReportGenerator {
                     .append(",")
                     .append(entry.getValue());
         }
+
         return reportBuilder.toString();
     }
 }

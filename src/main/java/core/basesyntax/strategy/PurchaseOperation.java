@@ -8,9 +8,13 @@ public class PurchaseOperation implements OperationHandler {
     public void handle(FruitTransaction transaction) {
         String fruit = transaction.getFruit();
         int quantity = transaction.getQuantity();
-
         int currentAmount = Storage.fruitModels.getOrDefault(fruit, 0);
-        Storage.fruitModels.put(fruit,currentAmount - quantity);
+
+        if (currentAmount - quantity < 0) {
+            throw new RuntimeException("Not enough stock for fruit: " + fruit
+                    + ". Current balance: " + currentAmount + ", requested: " + quantity);
+        }
+
+        Storage.fruitModels.put(fruit, currentAmount - quantity);
     }
 }
-
